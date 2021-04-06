@@ -1,11 +1,21 @@
 package yuretadseaj.ufrn.segundaprova.repositories
 
 import android.annotation.SuppressLint
+import android.content.Context
 import android.os.AsyncTask
+import androidx.room.Room
 import yuretadseaj.ufrn.segundaprova.dao.CountryDAO
+import yuretadseaj.ufrn.segundaprova.database.AppDatabase
 import yuretadseaj.ufrn.segundaprova.models.Country
 
-class CountryRepository(private val countryDAO: CountryDAO) {
+class CountryRepository(private val context: Context) {
+    private val database: AppDatabase by lazy {
+        Room.databaseBuilder(
+            context,
+            AppDatabase::class.java,
+            "countries.db.sqlite"
+        ).allowMainThreadQueries().build()
+    }
 
     fun findAll(): List<Country> {
         return FindAllAsyncTask().execute().get()
@@ -30,14 +40,14 @@ class CountryRepository(private val countryDAO: CountryDAO) {
     @SuppressLint("StaticFieldLeak")
     private inner class FindByIdAsyncTask() : AsyncTask<Int, Unit, Country>() {
         override fun doInBackground(vararg params: Int?): Country {
-            return countryDAO.findById(params[0]!!)
+            return database.countryDao().findById(params[0]!!)
         }
     }
 
     @SuppressLint("StaticFieldLeak")
     private inner class FindAllAsyncTask() : AsyncTask<Unit, Unit, List<Country>>() {
         override fun doInBackground(vararg params: Unit?): List<Country> {
-            return countryDAO.findAll()
+            return database.countryDao().findAll()
         }
     }
 
@@ -45,7 +55,7 @@ class CountryRepository(private val countryDAO: CountryDAO) {
     private inner class InsertAsyncTask() : AsyncTask<Country, Unit, Unit>() {
         override fun doInBackground(vararg countries: Country?) {
             countries.forEach {
-                countryDAO.insert(it!!)
+                database.countryDao().insert(it!!)
             }
         }
     }
@@ -54,7 +64,7 @@ class CountryRepository(private val countryDAO: CountryDAO) {
     private inner class UpdateAsyncTask() : AsyncTask<Country, Unit, Unit>() {
         override fun doInBackground(vararg countries: Country?) {
             countries.forEach {
-                countryDAO.update(it!!)
+                database.countryDao().update(it!!)
             }
         }
     }
@@ -63,7 +73,7 @@ class CountryRepository(private val countryDAO: CountryDAO) {
     private inner class DeleteAsyncTask() : AsyncTask<Country, Unit, Unit>() {
         override fun doInBackground(vararg countries: Country?) {
             countries.forEach {
-                countryDAO.delete(it!!)
+                database.countryDao().delete(it!!)
             }
         }
     }
