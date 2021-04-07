@@ -3,6 +3,7 @@ package yuretadseaj.ufrn.segundaprova.repositories
 import android.annotation.SuppressLint
 import android.content.Context
 import android.os.AsyncTask
+import androidx.lifecycle.LiveData
 import androidx.room.Room
 import yuretadseaj.ufrn.segundaprova.dao.CountryDAO
 import yuretadseaj.ufrn.segundaprova.database.AppDatabase
@@ -17,7 +18,7 @@ class CountryRepository(private val context: Context) {
         ).allowMainThreadQueries().build()
     }
 
-    fun findAll(): List<Country> {
+    fun findAll(): LiveData<List<Country>> {
         return FindAllAsyncTask().execute().get()
     }
 
@@ -45,8 +46,8 @@ class CountryRepository(private val context: Context) {
     }
 
     @SuppressLint("StaticFieldLeak")
-    private inner class FindAllAsyncTask() : AsyncTask<Unit, Unit, List<Country>>() {
-        override fun doInBackground(vararg params: Unit?): List<Country> {
+    private inner class FindAllAsyncTask() : AsyncTask<Unit, Unit, LiveData<List<Country>>>() {
+        override fun doInBackground(vararg params: Unit?): LiveData<List<Country>> {
             return database.countryDao().findAll()
         }
     }

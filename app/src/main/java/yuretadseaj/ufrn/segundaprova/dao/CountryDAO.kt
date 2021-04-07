@@ -1,12 +1,13 @@
 package yuretadseaj.ufrn.segundaprova.dao
 
+import androidx.lifecycle.LiveData
 import androidx.room.*
 import yuretadseaj.ufrn.segundaprova.models.Country
 
 @Dao
 interface CountryDAO {
     @Query("SELECT * FROM Country")
-    fun findAll(): List<Country>
+    fun findAll(): LiveData<List<Country>>
 
     @Query("SELECT * FROM Country WHERE id=:id")
     fun findById(id: Int): Country
