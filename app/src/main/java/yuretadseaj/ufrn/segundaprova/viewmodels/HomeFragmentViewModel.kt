@@ -9,7 +9,7 @@ import yuretadseaj.ufrn.segundaprova.repositories.CountryRepository
 
 class HomeFragmentViewModel(app: Application) : AndroidViewModel(app) {
     var countries: LiveData<List<Country>>
-    private val countryRepository: CountryRepository = CountryRepository(app.applicationContext)
+    private val countryRepository = CountryRepository(app.applicationContext)
 
     fun insertCountry(country: Country) {
         countryRepository.insert(country)

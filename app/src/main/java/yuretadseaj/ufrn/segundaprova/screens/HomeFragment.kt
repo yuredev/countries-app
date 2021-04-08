@@ -40,6 +40,19 @@ class HomeFragment : Fragment() {
         val adapter = CountryAdapter()
         binding.recyclerview.adapter = adapter
 
+        binding.button.setOnClickListener {
+            viewModel.insertCountry(
+                Country(
+                    "Russia",
+                    "Russo",
+                    "Moskow",
+                    "moeda russa la",
+                    60000000,
+                    8955211.5
+                )
+            )
+        }
+
         viewModel.countries.observe(viewLifecycleOwner, Observer {
             adapter.countries = it as MutableList<Country>
             adapter.notifyDataSetChanged()

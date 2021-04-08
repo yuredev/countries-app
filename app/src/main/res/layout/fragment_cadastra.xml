@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="yuretadseaj.ufrn.segundaprova.viewmodels.CadastraFragmentViewModel" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginHorizontal="40sp"
+        android:gravity="center"
+        android:orientation="vertical"
+        tools:context=".screens.CadastraFragment">
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="30sp"
+            android:text="🇧🇷 Cadastro de País 🇨🇦"
+            android:textAlignment="center"
+            android:textSize="24sp"
+            android:textStyle="bold" />
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="150sp"
+                android:layout_height="wrap_content"
+                android:text="Nome do país: "
+                android:layout_marginLeft="2sp"
+                android:textSize="18sp" />
+
+            <EditText
+                android:id="@+id/editTextCountryName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@={viewModel.countryName}" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="150sp"
+                android:layout_height="wrap_content"
+                android:text="Principal lingua: "
+                android:layout_marginLeft="2sp"
+                android:textSize="18sp" />
+
+            <EditText
+                android:id="@+id/editTextCountryLanguage"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@={viewModel.countryLanguage}" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="150sp"
+                android:layout_height="wrap_content"
+                android:text="Moeda: "
+                android:layout_marginLeft="2sp"
+                android:textSize="18sp" />
+
+            <EditText
+                android:id="@+id/editTextCountryCurrency"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@={viewModel.countryCurrency}" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="150sp"
+                android:layout_height="wrap_content"
+                android:text="Capital: "
+                android:layout_marginLeft="2sp"
+                android:textSize="18sp" />
+            <EditText
+                android:id="@+id/editTextCountryCapital"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@={viewModel.countryCapital}" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="150sp"
+                android:layout_height="wrap_content"
+                android:text="Area territorial: "
+                android:layout_marginLeft="2sp"
+                android:textSize="18sp" />
+            <EditText
+                android:id="@+id/editTextCountryArea"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="numberDecimal"
+                android:text="@={`` + viewModel.countryArea}" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="150sp"
+                android:layout_height="wrap_content"
+                android:text="População: "
+                android:layout_marginLeft="2sp"
+                android:textSize="18sp" />
+            <EditText
+                android:id="@+id/editTextCountryPopulation"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="number"
+                android:text="@={`` + viewModel.countryPopulation}" />
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/buttonInsert"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30sp"
+            android:onClick="@{() -> viewModel.saveCountry()}"
+            android:text="Cadastrar" />
+
+    </LinearLayout>
+</layout>
