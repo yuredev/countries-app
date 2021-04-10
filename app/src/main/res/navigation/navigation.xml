@@ -4,19 +4,31 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/navigation.xml"
-    app:startDestination="@id/cadastraFragment">
+    app:startDestination="@id/homeFragment">
 
     <fragment
         android:id="@+id/homeFragment"
         android:name="yuretadseaj.ufrn.segundaprova.screens.HomeFragment"
-        android:label="fragment_home"
-        tools:layout="@layout/fragment_home" >
+        android:label="Home"
+        tools:layout="@layout/fragment_home">
         <action
             android:id="@+id/action_homeFragment_to_cadastraFragment"
             app:destination="@id/cadastraFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_alteraFragment"
+            app:destination="@id/alteraFragment" />
     </fragment>
     <fragment
         android:id="@+id/cadastraFragment"
         android:name="yuretadseaj.ufrn.segundaprova.screens.CadastraFragment"
-        android:label="CadastraFragment" />
+        android:label="Cadastro de País" />
+    <fragment
+        android:id="@+id/alteraFragment"
+        android:name="yuretadseaj.ufrn.segundaprova.screens.AlteraFragment"
+        android:label="AlteraFragment" >
+        <argument
+            android:name="countryId"
+            app:argType="integer"
+            />
+    </fragment>
 </navigation>

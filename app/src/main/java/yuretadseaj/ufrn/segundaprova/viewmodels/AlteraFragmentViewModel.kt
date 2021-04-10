@@ -6,7 +6,7 @@ import androidx.lifecycle.MutableLiveData
 import yuretadseaj.ufrn.segundaprova.models.Country
 import yuretadseaj.ufrn.segundaprova.repositories.CountryRepository
 
-class CadastraFragmentViewModel(app: Application) : AndroidViewModel(app) {
+class AlteraFragmentViewModel(app: Application) : AndroidViewModel(app) {
     var countryName = MutableLiveData<String>()
     var countryCapital = MutableLiveData<String>()
     var countryPopulation = MutableLiveData(0)
@@ -15,7 +15,7 @@ class CadastraFragmentViewModel(app: Application) : AndroidViewModel(app) {
     var countryCurrency = MutableLiveData<String>()
     private val countryRepository = CountryRepository(app.applicationContext)
 
-    val country: Country
+    var country: Country
         get() = Country(
             countryName.value!!,
             countryLanguage.value!!,
@@ -24,8 +24,21 @@ class CadastraFragmentViewModel(app: Application) : AndroidViewModel(app) {
             countryPopulation.value!!,
             countryArea.value!!
         )
+        set(country) {
+            countryName.value = country.name
+            countryLanguage.value = country.language
+            countryCapital.value = country.capital
+            countryCurrency.value = country.currency
+            countryPopulation.value = country.population
+            countryArea.value = country.area
+        }
+
+    fun feedCountriesForm(id: Int) {
+        val countryFound = countryRepository.findById(id)
+        country = countryFound
+    }
 
     fun saveCountry() {
-        countryRepository.insert(country)
+        countryRepository.update(country)
     }
 }

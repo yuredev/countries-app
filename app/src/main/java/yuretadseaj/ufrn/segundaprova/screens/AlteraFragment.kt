@@ -8,21 +8,25 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import yuretadseaj.ufrn.segundaprova.R
-import yuretadseaj.ufrn.segundaprova.databinding.FragmentCadastraBinding
-import yuretadseaj.ufrn.segundaprova.viewmodels.CadastraFragmentViewModel
+import yuretadseaj.ufrn.segundaprova.databinding.FragmentAlteraBinding
+import yuretadseaj.ufrn.segundaprova.viewmodels.AlteraFragmentViewModel
 
-class CadastraFragment : Fragment() {
-    private lateinit var binding: FragmentCadastraBinding
-    private lateinit var viewModel: CadastraFragmentViewModel
+class AlteraFragment : Fragment() {
+    private lateinit var binding: FragmentAlteraBinding
+    private lateinit var viewModel: AlteraFragmentViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_cadastra, container, false)
-        viewModel = ViewModelProvider(this).get(CadastraFragmentViewModel::class.java)
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_altera, container, false)
+        viewModel = ViewModelProvider(this).get(AlteraFragmentViewModel::class.java)
         binding.viewModel = viewModel
+
+
+        val args = AlteraFragmentArgs.fromBundle(arguments!!)
+        viewModel.feedCountriesForm(args.countryId)
 
         binding.buttonInsert.setOnClickListener {
             viewModel.saveCountry()
@@ -30,5 +34,4 @@ class CadastraFragment : Fragment() {
 
         return binding.root
     }
-
 }

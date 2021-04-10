@@ -9,13 +9,14 @@
         tools:context=".screens.HomeFragment">
 
         <Button
-            android:id="@+id/button"
-            android:layout_width="wrap_content"
+            android:id="@+id/buttonNavCadastra"
+            android:layout_width="200dp"
             android:layout_height="wrap_content"
-            android:text="Button"
+            android:text="Cadastrar país"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            tools:layout_editor_absoluteY="31dp" />
+            tools:layout_editor_absoluteY="31dp"
+            tools:ignore="MissingConstraints" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerview"
@@ -26,8 +27,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/button"
-            app:layout_constraintVertical_bias="0.118" />
+            app:layout_constraintTop_toBottomOf="@+id/buttonNavCadastra" />
         <!--            tools:listitem="@layout/"-->
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

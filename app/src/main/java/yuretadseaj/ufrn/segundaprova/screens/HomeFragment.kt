@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import yuretadseaj.ufrn.segundaprova.R
 import yuretadseaj.ufrn.segundaprova.adapters.CountryAdapter
@@ -23,12 +24,6 @@ class HomeFragment : Fragment() {
     private lateinit var countryRepository: CountryRepository
     private lateinit var viewModel: HomeFragmentViewModel
 
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
-        ctx = context
-        countryRepository = CountryRepository(ctx)
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -40,19 +35,6 @@ class HomeFragment : Fragment() {
         val adapter = CountryAdapter()
         binding.recyclerview.adapter = adapter
 
-        binding.button.setOnClickListener {
-            viewModel.insertCountry(
-                Country(
-                    "Russia",
-                    "Russo",
-                    "Moskow",
-                    "moeda russa la",
-                    60000000,
-                    8955211.5
-                )
-            )
-        }
-
         viewModel.countries.observe(viewLifecycleOwner, Observer {
             adapter.countries = it as MutableList<Country>
             adapter.notifyDataSetChanged()
@@ -61,6 +43,16 @@ class HomeFragment : Fragment() {
         val layout = LinearLayoutManager(this.context!!, LinearLayoutManager.VERTICAL, false)
         binding.recyclerview.layoutManager = layout
 
+        binding.buttonNavCadastra.setOnClickListener {
+            Navigation.findNavController(it).navigate(R.id.action_homeFragment_to_cadastraFragment)
+        }
+
         return binding.root
+    }
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        ctx = context
+        countryRepository = CountryRepository(ctx)
     }
 }

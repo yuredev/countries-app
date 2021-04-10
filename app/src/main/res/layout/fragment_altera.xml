@@ -5,7 +5,8 @@
     <data>
         <variable
             name="viewModel"
-            type="yuretadseaj.ufrn.segundaprova.viewmodels.CadastraFragmentViewModel" />
+            type="yuretadseaj.ufrn.segundaprova.viewmodels.AlteraFragmentViewModel"
+            />
     </data>
 
     <LinearLayout
@@ -14,7 +15,7 @@
         android:layout_marginHorizontal="40sp"
         android:gravity="center"
         android:orientation="vertical"
-        tools:context=".screens.CadastraFragment">
+        tools:context=".screens.AlteraFragment">
 
         <TextView
             android:id="@+id/textView"
@@ -34,8 +35,8 @@
             <TextView
                 android:layout_width="150sp"
                 android:layout_height="wrap_content"
-                android:text="Nome do país: "
                 android:layout_marginLeft="2sp"
+                android:text="Nome do país: "
                 android:textSize="18sp" />
 
             <EditText
@@ -53,8 +54,8 @@
             <TextView
                 android:layout_width="150sp"
                 android:layout_height="wrap_content"
-                android:text="Principal lingua: "
                 android:layout_marginLeft="2sp"
+                android:text="Principal lingua: "
                 android:textSize="18sp" />
 
             <EditText
@@ -72,8 +73,8 @@
             <TextView
                 android:layout_width="150sp"
                 android:layout_height="wrap_content"
-                android:text="Moeda: "
                 android:layout_marginLeft="2sp"
+                android:text="Moeda: "
                 android:textSize="18sp" />
 
             <EditText
@@ -90,9 +91,10 @@
             <TextView
                 android:layout_width="150sp"
                 android:layout_height="wrap_content"
-                android:text="Capital: "
                 android:layout_marginLeft="2sp"
+                android:text="Capital: "
                 android:textSize="18sp" />
+
             <EditText
                 android:id="@+id/editTextCountryCapital"
                 android:layout_width="match_parent"
@@ -107,9 +109,10 @@
             <TextView
                 android:layout_width="150sp"
                 android:layout_height="wrap_content"
-                android:text="Area territorial: "
                 android:layout_marginLeft="2sp"
+                android:text="Area territorial: "
                 android:textSize="18sp" />
+
             <EditText
                 android:id="@+id/editTextCountryArea"
                 android:layout_width="match_parent"
@@ -125,9 +128,10 @@
             <TextView
                 android:layout_width="150sp"
                 android:layout_height="wrap_content"
-                android:text="População: "
                 android:layout_marginLeft="2sp"
+                android:text="População: "
                 android:textSize="18sp" />
+
             <EditText
                 android:id="@+id/editTextCountryPopulation"
                 android:layout_width="match_parent"
@@ -141,7 +145,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="30sp"
-            android:text="Cadastrar" />
+            android:text="Atualizar" />
+
 
     </LinearLayout>
 </layout>
