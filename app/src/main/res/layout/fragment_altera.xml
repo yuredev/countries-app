@@ -22,7 +22,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="30sp"
-            android:text="🇧🇷 Cadastro de País 🇨🇦"
+            android:text="🇧🇷 Editar País 🇨🇦"
             android:textAlignment="center"
             android:textSize="24sp"
             android:textStyle="bold" />

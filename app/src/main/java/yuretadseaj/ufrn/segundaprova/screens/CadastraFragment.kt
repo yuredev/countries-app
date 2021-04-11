@@ -24,6 +24,7 @@ class CadastraFragment : Fragment() {
         viewModel = ViewModelProvider(this).get(CadastraFragmentViewModel::class.java)
         binding.viewModel = viewModel
 
+
         binding.buttonInsert.setOnClickListener {
             viewModel.saveCountry()
         }

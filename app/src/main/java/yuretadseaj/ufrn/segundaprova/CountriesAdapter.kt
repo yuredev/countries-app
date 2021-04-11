@@ -1,4 +1,4 @@
-package yuretadseaj.ufrn.segundaprova.adapters
+package yuretadseaj.ufrn.segundaprova
 
 import android.view.LayoutInflater
 import android.view.View
@@ -7,7 +7,6 @@ import android.widget.Button
 import android.widget.TextView
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
-import yuretadseaj.ufrn.segundaprova.R
 import yuretadseaj.ufrn.segundaprova.models.Country
 import yuretadseaj.ufrn.segundaprova.screens.HomeFragmentDirections
 
@@ -24,10 +23,6 @@ class CountryAdapter() : RecyclerView.Adapter<CountryViewHolder>() {
         val chosenCountry = countries[position]
         holder.countryName.text = chosenCountry.name
 
-        holder.buttonNavToAltera.setOnClickListener {
-            Navigation.findNavController(it)
-                .navigate(HomeFragmentDirections.actionHomeFragmentToAlteraFragment(chosenCountry.id))
-        }
     }
 
     override fun getItemCount() = countries.size
@@ -35,5 +30,4 @@ class CountryAdapter() : RecyclerView.Adapter<CountryViewHolder>() {
 
 class CountryViewHolder(view: View) : RecyclerView.ViewHolder(view) {
     val countryName: TextView = view.findViewById(R.id.textViewCountryName)
-    val buttonNavToAltera: Button = view.findViewById(R.id.buttonNavToAltera)
 }

@@ -14,4 +14,8 @@ class HomeFragmentViewModel(app: Application) : AndroidViewModel(app) {
     init {
         countries = countryRepository.findAll()
     }
+
+    fun refreshCountries() {
+        countries = countryRepository.findAll()
+    }
 }

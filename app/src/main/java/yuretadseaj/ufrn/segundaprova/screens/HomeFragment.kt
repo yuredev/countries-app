@@ -2,17 +2,18 @@ package yuretadseaj.ufrn.segundaprova.screens
 
 import android.content.Context
 import android.os.Bundle
+import android.view.*
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
+import androidx.navigation.fragment.findNavController
+import androidx.navigation.ui.NavigationUI
 import androidx.recyclerview.widget.LinearLayoutManager
 import yuretadseaj.ufrn.segundaprova.R
-import yuretadseaj.ufrn.segundaprova.adapters.CountryAdapter
+import yuretadseaj.ufrn.segundaprova.RecyclerViewClickListener
+import yuretadseaj.ufrn.segundaprova.CountryAdapter
 import yuretadseaj.ufrn.segundaprova.databinding.FragmentHomeBinding
 import yuretadseaj.ufrn.segundaprova.models.Country
 import yuretadseaj.ufrn.segundaprova.repositories.CountryRepository
@@ -35,6 +36,7 @@ class HomeFragment : Fragment() {
         val adapter = CountryAdapter()
         binding.recyclerview.adapter = adapter
 
+        viewModel.refreshCountries()
         viewModel.countries.observe(viewLifecycleOwner, Observer {
             adapter.countries = it as MutableList<Country>
             adapter.notifyDataSetChanged()
@@ -43,9 +45,31 @@ class HomeFragment : Fragment() {
         val layout = LinearLayoutManager(this.context!!, LinearLayoutManager.VERTICAL, false)
         binding.recyclerview.layoutManager = layout
 
-        binding.buttonNavCadastra.setOnClickListener {
-            Navigation.findNavController(it).navigate(R.id.action_homeFragment_to_cadastraFragment)
-        }
+        binding.recyclerview.addOnItemTouchListener(
+            RecyclerViewClickListener(this.requireContext(),
+                binding.recyclerview,
+                object : RecyclerViewClickListener.OnItemCLickListener {
+                    override fun onItemClick(v: View, position: Int) {
+                        val chosenCountry = viewModel.countries.value!![position]
+                        Navigation.findNavController(v)
+                            .navigate(
+                                HomeFragmentDirections.actionHomeFragmentToDetalhesFragment(
+                                    chosenCountry.id
+                                )
+                            )
+                    }
+
+                    override fun onItemLongClick(v: View, position: Int) {
+                        val chosenCountry = viewModel.countries.value!![position]
+                        Navigation.findNavController(v)
+                            .navigate(
+                                HomeFragmentDirections.actionHomeFragmentToAlteraFragment(
+                                    chosenCountry.id
+                                )
+                            )
+                    }
+                })
+        )
 
         return binding.root
     }
@@ -54,5 +78,14 @@ class HomeFragment : Fragment() {
         super.onAttach(context)
         ctx = context
         countryRepository = CountryRepository(ctx)
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        super.onCreateOptionsMenu(menu, inflater)
+        inflater.inflate(R.menu.options_menu, menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return NavigationUI.onNavDestinationSelected(item, this.findNavController()) || super.onOptionsItemSelected(item)
     }
 }

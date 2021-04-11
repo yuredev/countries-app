@@ -17,6 +17,12 @@
         <action
             android:id="@+id/action_homeFragment_to_alteraFragment"
             app:destination="@id/alteraFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_detalhesFragment"
+            app:destination="@id/detalhesFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_sobreFragment"
+            app:destination="@id/sobreFragment" />
     </fragment>
     <fragment
         android:id="@+id/cadastraFragment"
@@ -31,4 +37,18 @@
             app:argType="integer"
             />
     </fragment>
+    <fragment
+        android:id="@+id/detalhesFragment"
+        android:name="yuretadseaj.ufrn.segundaprova.screens.DetalhesFragment"
+        android:label="DetalhesFragment" >
+        <argument
+            android:name="countryId"
+            app:argType="integer"
+            />
+    </fragment>
+    <fragment
+        android:id="@+id/sobreFragment"
+        android:name="yuretadseaj.ufrn.segundaprova.screens.SobreFragment"
+        android:label="fragment_sobre"
+        tools:layout="@layout/fragment_sobre" />
 </navigation>

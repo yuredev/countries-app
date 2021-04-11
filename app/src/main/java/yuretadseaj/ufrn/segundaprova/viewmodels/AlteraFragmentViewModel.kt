@@ -7,6 +7,7 @@ import yuretadseaj.ufrn.segundaprova.models.Country
 import yuretadseaj.ufrn.segundaprova.repositories.CountryRepository
 
 class AlteraFragmentViewModel(app: Application) : AndroidViewModel(app) {
+    var countryId = MutableLiveData<Int>(null)
     var countryName = MutableLiveData<String>()
     var countryCapital = MutableLiveData<String>()
     var countryPopulation = MutableLiveData(0)
@@ -16,15 +17,20 @@ class AlteraFragmentViewModel(app: Application) : AndroidViewModel(app) {
     private val countryRepository = CountryRepository(app.applicationContext)
 
     var country: Country
-        get() = Country(
-            countryName.value!!,
-            countryLanguage.value!!,
-            countryCapital.value!!,
-            countryCurrency.value!!,
-            countryPopulation.value!!,
-            countryArea.value!!
-        )
+        get() {
+            val countryToReturn = Country(
+                countryName.value!!,
+                countryLanguage.value!!,
+                countryCapital.value!!,
+                countryCurrency.value!!,
+                countryPopulation.value!!,
+                countryArea.value!!
+            )
+            countryToReturn.id = countryId.value!!
+            return countryToReturn
+        }
         set(country) {
+            countryId.value = country.id
             countryName.value = country.name
             countryLanguage.value = country.language
             countryCapital.value = country.capital

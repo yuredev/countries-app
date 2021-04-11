@@ -11,12 +11,4 @@
         android:id="@+id/textViewCountryName"
         />
 
-    <Button
-        style="?android:attr/borderlessButtonStyle"
-        android:layout_width="55dp"
-        android:layout_height="40sp"
-        android:paddingHorizontal="0sp"
-        android:text="Editar"
-        android:id="@+id/buttonNavToAltera"
-        android:textColor="@color/purple_500" />
 </LinearLayout>
