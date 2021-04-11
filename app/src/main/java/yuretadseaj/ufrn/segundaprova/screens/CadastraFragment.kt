@@ -7,6 +7,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.NavController
+import androidx.navigation.fragment.findNavController
+import androidx.navigation.ui.NavigationUI
 import yuretadseaj.ufrn.segundaprova.R
 import yuretadseaj.ufrn.segundaprova.databinding.FragmentCadastraBinding
 import yuretadseaj.ufrn.segundaprova.viewmodels.CadastraFragmentViewModel

@@ -11,7 +11,7 @@
         android:id="@+id/nav_header"
         android:layout_width="203dp"
         android:layout_height="158dp"
-        android:src="@mipmap/ic_launcher"
+        android:src="@drawable/mundial"
         app:srcCompat="@drawable/mundial" />
 
     <TextView

@@ -46,7 +46,8 @@ class HomeFragment : Fragment() {
         binding.recyclerview.layoutManager = layout
 
         binding.recyclerview.addOnItemTouchListener(
-            RecyclerViewClickListener(this.requireContext(),
+            RecyclerViewClickListener(
+                this.requireContext(),
                 binding.recyclerview,
                 object : RecyclerViewClickListener.OnItemCLickListener {
                     override fun onItemClick(v: View, position: Int) {
